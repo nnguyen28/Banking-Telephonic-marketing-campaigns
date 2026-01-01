@@ -46,7 +46,7 @@ Business Objective:
   
   6. Which segments require the most calls per successful conversion?
 
-📈 Key Insights
+📈 Key Insights:
 
  - Overall conversion rate is approximately 12%, indicating that broad, untargeted outreach is inefficient.
   
@@ -60,3 +60,32 @@ Business Objective:
   
  - Call efficiency differs significantly by occupation, with some segments requiring more calls per conversion, reducing overall ROI.
 
+📂 Example SQL Queries:
+
+1. What % of clients actually subscribe?
+	 - there is about 12% subscribe after the market campaign
+
+SELECT
+  y,
+  COUNT(*) AS total_count,
+  ROUND(100 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS percent_count
+FROM banking
+GROUP BY y;
+
+2. Identify which groups have the highest convert/non-convert.
+	 - clients with job title as management has the highest rate of conversion
+
+SELECT
+  job, 
+  y, 
+  COUNT(y) AS total_count,
+  ROUND(100 * COUNT(*) / SUM(COUNT(*)) OVER (), 2) AS percent_count
+FROM banking
+GROUP BY job, y
+HAVING y = 'yes'
+ORDER BY COUNT(y) DESC, job;
+
+
+👤 Author
+NGUYEN NGUYEN
+SQL / Data Analytics Portfolio Project
