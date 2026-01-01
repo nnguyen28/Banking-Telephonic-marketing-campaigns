@@ -28,6 +28,9 @@ CREATE DATABASE banking_data;
 
 USE banking_data;
 
+-- Right click on the table schemas and choose Table Data Import Wizard, then import the data from there.
+
+-- Checking the data
 SHOW TABLES;
 DESCRIBE banking;
 SHOW COLUMNS FROM banking;
